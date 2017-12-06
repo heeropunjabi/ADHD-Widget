@@ -1,0 +1,29 @@
+﻿.workspace {
+    margin: auto;
+    text-align: center;
+}
+.workspace span.super-large-font {
+        font-size: 14em;
+        color: #fff;
+}
+.actions {
+    margin: auto;
+    text-align: center;
+}
+.results {
+    color: #a5a5a5;
+    width: 100%;
+    margin: auto;
+    display: none;
+}
+
+.test-response-text-entry {
+    font-size: 4em;
+    text-align: center;
+    border-radius: 50px 50px;
+    width:100%;
+    margin-bottom:5%;
+}
+.progressbar-text{
+    font-size:4em;
+}

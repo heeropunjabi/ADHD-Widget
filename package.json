@@ -1,0 +1,36 @@
+{
+  "name": "adhd-widget",
+  "version": "1.0.0",
+  "description": "widget which can be deployed on any website ",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack",
+    "gulp": "gulp",
+    "build-and-run": "npm run webpack && npm run gulp && http-server ./src/client/dist/"
+    
+  },
+  "author": "Heero",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bundle-ensure-webpack-plugin": "0.0.3",
+    "jquery": "^3.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "style-loader": "^0.19.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "easypack": "^1.0.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "http-server": "^0.10.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^2.1.0-beta.22"
+  }
+}

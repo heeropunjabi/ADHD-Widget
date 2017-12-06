@@ -1,0 +1,55 @@
+﻿body {
+    padding-bottom: 70px;
+}
+
+.black {
+    background-color: #000;
+}
+
+.grey {
+    background-color: #a5a5a5;
+}
+
+.light-grey {
+    background-color: #d1d1d1;
+}
+
+.float-left {
+    float: left;
+}
+
+span.large-font {
+    font-size: 20px;
+    color: #fff;
+}
+
+.float-right {
+    float: right;
+}
+
+.margin-20 {
+    margin: 20px;
+}
+
+.forbid-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.intro-text {
+    width: 70%;
+    margin: auto;
+    color: #fff;
+    font-size: x-large;
+    text-align: center;
+    border: 5px solid;
+    border-color: rgba(165, 165, 165, 0.5);
+    padding: 15px;
+    border-radius: 15px 15px;
+    margin-bottom: 20px;
+}
