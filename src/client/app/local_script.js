@@ -1,6 +1,6 @@
 $(function () {
     $('#start-test-button').attr('disabled', 'disabled');
-    $.get("https://api.myjson.com/bins/jsodr", function (data, status) {
+    $.get("http://adhdassist.azurewebsites.net/Portal/GetSettings?settingName=focus%20hyperactivity%204", function (data, status) {
         var settings = setSettings(data);
         $('#target-minutes-placeholder').html(settings.totalTime / (1000 * 60));
         $('#start-test-button').removeAttr('disabled').click(function () {

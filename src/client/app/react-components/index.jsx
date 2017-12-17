@@ -8,15 +8,12 @@ class App extends React.Component {
         return (
             <div id="container" className="black container-fluid">
                 <div className="workspace">
+                <div id="countdown"></div>
                     <span id="workspace-container" className="super-large-font">
                         &nbsp;
             </span>
 
-                    <div className="results" id="workspace-results"></div>
-
-                    <div id="app-feedback"></div>
-
-                    <div id="countdown"></div>
+                    
                 </div>
                 <div className="intro-text" id="test-instructions">
                     <p>

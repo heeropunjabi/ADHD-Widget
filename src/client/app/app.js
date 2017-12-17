@@ -1026,14 +1026,12 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'workspace' },
+                    _react2.default.createElement('div', { id: 'countdown' }),
                     _react2.default.createElement(
                         'span',
                         { id: 'workspace-container', className: 'super-large-font' },
                         '\xA0'
-                    ),
-                    _react2.default.createElement('div', { className: 'results', id: 'workspace-results' }),
-                    _react2.default.createElement('div', { id: 'app-feedback' }),
-                    _react2.default.createElement('div', { id: 'countdown' })
+                    )
                 ),
                 _react2.default.createElement(
                     'div',

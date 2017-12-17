@@ -30396,9 +30396,7 @@ var Lorem;
         var timer = new Timer(),
             lastUntilSeconds = totalMilliseconds / 1000,
             target = $(elementSelector),
-            timeHostingDiv = $('<div class="alert alert-info" role="alert">').appendTo(target),
-            progressbarHostingDiv = $('<div class="progress-bar progress-bar-success progress-bar-striped progress-bar-animated active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">')
-                .appendTo($('<div class="progress">').appendTo(target));
+            timeHostingDiv = $('<div class="text-muted pull-right timer">').appendTo(target);
 
         timer.start({ countdown: true, startValues: { seconds: lastUntilSeconds } });
 
@@ -30410,7 +30408,6 @@ var Lorem;
                 percent = ((lastUntilSeconds - currentTotalTime.seconds) * 100) / lastUntilSeconds;
 
             timeHostingDiv.html(currentTime.toString() + " remaining");
-            progressbarHostingDiv.width(percent + '%').text(percent.toFixed(0) + '%');
         });
         timer.addEventListener('targetAchieved', function (e) {
             target.remove();
@@ -30660,13 +30657,15 @@ var Lorem;
             entries = prepareSequence(),
             currentEntryIndex = 0,
             results = $(resultsSelector),
-            globalTestTimeout;
+            globalTestTimeout,
+            testInProgress = false;
 
         var run = function () {
             if (entries.length - 1 === currentEntryIndex) {
                 clearTimeout(globalTestTimeout);
                 renderCurrentRank(results, attentionRow, callback);
                 target.hide();
+                testInProgress = false;
             } else {
                 var entry = entries[currentEntryIndex];
                 attentionRow.push(new attention(entry.source, entry.value));
@@ -30684,6 +30683,8 @@ var Lorem;
             }
         };
 
+        testInProgress = true;
+
         run();
 
         $(document).on('mouseup keypress', function (e) {
@@ -30696,52 +30697,54 @@ var Lorem;
 
             console.log(lastEntry);
 
-            var animations = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'headShake', 'swing', 'tada', 'wobble', 'jello',
-                'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft',
-                'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight',
-                'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig',
-                'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 'fadeOutUpBig', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'lightSpeedIn',
-                'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight', 'rotateOut',
-                'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight', 'hinge', 'jackInTheBox', 'rollIn',
-                'rollOut', 'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft',
-                'zoomOutRight', 'zoomOutUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp', 'slideOutDown', 'slideOutLeft',
-                'slideOutRight', 'slideOutUp'];
+            if (testInProgress && lastEntry.reacted === lastEntry.shouldReact) {
+                var animations = ['bounce', 'rubberBand', 'headShake', 'swing', 'tada', 'wobble', 'jello',
+                    'bounceIn', 'fadeOut', 'slideInDown', 'slideOutUp', 'fadeIn', 'fadeInDown',
+                    'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInUp', 'slideInLeft', 'slideInRight',
+                    'slideInUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight', 'jackInTheBox', 'lightSpeedIn',
+                    'pulse', 'fadeOutUp', 'lightSpeedOut', 'rotateIn', 'rollIn',
+                    'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOutDown', 'zoomOutLeft', 'zoomOutUp'],
+                    encouragements = ['Almost There!', 'Good Job!', 'Keep Going!', 'You\'re Doing Amazing', 'You\'re Doing Great'],
+                    star = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="23">' +
+                        '<polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ffd055"/>' +
+                        '</svg>',
+                    animation = animations[application.math.getRandomWithin(0, animations.length - 1).toFixed(0)],
+                    encouragement = encouragements[application.math.getRandomWithin(0, encouragements.length - 1).toFixed(0)],
+                    delay = 1100;
 
-            var encouragements = ['Almost There!', 'Good Job!', 'Keep Going!', 'You\'re Doing Amazing', 'You\'re Doing Great'];
+                var encouragements = ['Almost There!', 'Good Job!', 'Keep Going!', 'You\'re Doing Amazing', 'You\'re Doing Great'];
+                var circleHeight = ["150px", "156px", "160px", "166px", "170px"];
+                var circleColors = ["#f9b24d", "#3cba54", "#f4c20d", " #db3236", "#4885ed"];
 
-            var star = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="23">' +
-                '<polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ffd055"/>' +
-                '</svg>';
 
-            $('<div>').html(encouragements[application.math.getRandomWithin(0, encouragements.length - 1).toFixed(0)])
-                .css('color', 'white')
-                .css('width', '100px')
-                .css('position', 'absolute')
-                .css('left', e.clientX)
-                .css('top', e.clientY)
-                .addClass('animated ' + animations[application.math.getRandomWithin(0, animations.length - 1).toFixed(0)])
-                .appendTo($('body')).delay(1100).queue(function () { $(this).remove(); });
+                var randomCircleHeight = circleHeight[application.math.getRandomWithin(0, circleHeight.length - 1).toFixed(0)];
+                var randomColor = circleColors[application.math.getRandomWithin(0, circleColors.length - 1).toFixed(0)];
 
-            var an = animations[application.math.getRandomWithin(0, animations.length - 1).toFixed(0)];
+                //'flipInX','flipInY', 'flipOutX', 'flipOutY', 'rotateInDownLeft', 'rotateInDownRight','rotateInUpLeft', 'rotateInUpRight','zoomOutRight'
+                //'bounceOutRight', 'bounceOutUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft','fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig',
+                //'fadeOutRight', 'fadeOutRightBig','rollOut','fadeInRightBig', 'hinge','fadeInUpBig','bounceInUp','rotateOutDownLeft', 'rotateOutDownRight',
+                //'fadeOutUpBig','flash', 'bounceInLeft', 'bounceInRight',  'zoomOut', 'fadeInDownBig', 'rotateOutUpRight', 'bounceInDown', 
+                //'rotateOut', 'rotateOutUpLeft',  'shake',
 
-            //for (var i = 0; i < 10; i++) {
-            //    $('<div>').html(star)
-            //        .css('width', '100px')
-            //        .css('position', 'absolute')
-            //        .css('left', e.clientX + i * 30)
-            //        .css('top', e.clientY - i * 30)
-            //        .addClass('animated ' + an)
-            //        .appendTo($('body')).delay(1100).queue(function () { $(this).remove(); });
-            //}
+                $("<div id='circle'>").html(encouragement)
+                    .css('color', 'white')
+                    .css("background", randomColor)
+                    .css("height", randomCircleHeight)
+                    .css("width", randomCircleHeight)
+                    .css("line-height", randomCircleHeight)
+                    .css('position', 'absolute')
+                    .css('left', e.clientX)
+                    .css('top', e.clientY)
+                    .addClass('animated ' + animation)
+                    .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
+            }
         });
     };
-
-
 })(jQuery, document, window, undefined);
 
 $(function () {
     $('#start-test-button').attr('disabled', 'disabled');
-    $.get("https://api.myjson.com/bins/jsodr", function (data, status) {
+    $.get("http://adhdassist.azurewebsites.net/Portal/GetSettings?settingName=focus%20hyperactivity%204", function (data, status) {
         var settings = setSettings(data);
         $('#target-minutes-placeholder').html(settings.totalTime / (1000 * 60));
         $('#start-test-button').removeAttr('disabled').click(function () {
@@ -31795,14 +31798,12 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'workspace' },
+                    _react2.default.createElement('div', { id: 'countdown' }),
                     _react2.default.createElement(
                         'span',
                         { id: 'workspace-container', className: 'super-large-font' },
                         '\xA0'
-                    ),
-                    _react2.default.createElement('div', { className: 'results', id: 'workspace-results' }),
-                    _react2.default.createElement('div', { id: 'app-feedback' }),
-                    _react2.default.createElement('div', { id: 'countdown' })
+                    )
                 ),
                 _react2.default.createElement(
                     'div',

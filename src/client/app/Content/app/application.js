@@ -81,9 +81,7 @@
         var timer = new Timer(),
             lastUntilSeconds = totalMilliseconds / 1000,
             target = $(elementSelector),
-            timeHostingDiv = $('<div class="alert alert-info" role="alert">').appendTo(target),
-            progressbarHostingDiv = $('<div class="progress-bar progress-bar-success progress-bar-striped progress-bar-animated active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">')
-                .appendTo($('<div class="progress">').appendTo(target));
+            timeHostingDiv = $('<div class="text-muted pull-right timer">').appendTo(target);
 
         timer.start({ countdown: true, startValues: { seconds: lastUntilSeconds } });
 
@@ -95,7 +93,6 @@
                 percent = ((lastUntilSeconds - currentTotalTime.seconds) * 100) / lastUntilSeconds;
 
             timeHostingDiv.html(currentTime.toString() + " remaining");
-            progressbarHostingDiv.width(percent + '%').text(percent.toFixed(0) + '%');
         });
         timer.addEventListener('targetAchieved', function (e) {
             target.remove();

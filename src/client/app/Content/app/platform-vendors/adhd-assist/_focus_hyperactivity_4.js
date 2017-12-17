@@ -181,13 +181,13 @@
                 '</svg>';
 
             $('<div>').html(encouragements[application.math.getRandomWithin(0, encouragements.length - 1).toFixed(0)])
-                .css('color', 'white')
-                .css('width', '100px')
+                .css('color', 'black')
+                .css('width', '300px')
                 .css('position', 'absolute')
                 .css('left', e.clientX)
                 .css('top', e.clientY)
                 .addClass('animated ' + animations[application.math.getRandomWithin(0, animations.length - 1).toFixed(0)])
-                .appendTo($('body')).delay(1100).queue(function () { $(this).remove(); });
+                .appendTo($('body')).delay(50000).queue(function () { $(this).remove(); });
 
             var an = animations[application.math.getRandomWithin(0, animations.length - 1).toFixed(0)];
 

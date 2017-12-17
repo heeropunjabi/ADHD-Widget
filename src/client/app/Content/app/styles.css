@@ -53,3 +53,24 @@ span.large-font {
     border-radius: 15px 15px;
     margin-bottom: 20px;
 }
+
+#circle {
+	width: 100px;
+	height: 100px;
+	background: #f9b24d;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 100px;
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.timer {
+    font-size: 21px;
+    color: white;
+    font-weight: bold;
+}
+
