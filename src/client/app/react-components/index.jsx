@@ -5,10 +5,15 @@ class App extends React.Component {
     componentWillMount() {
     }
     render() {
+        var testStyle = {
+            display:'none'
+        }
         return (
             <div id="container" className="black container-fluid">
                 <div className="workspace">
-                <div id="countdown"></div>
+                <div id="countdown">
+                    <img src="http://www.adhd-assist.com/wp-content/uploads/2015/05/logo4.jpg" alt="ADHD Assist" class="logo_standard"></img>
+                </div>
                     <span id="workspace-container" className="super-large-font">
                         &nbsp;
             </span>
@@ -25,7 +30,7 @@ class App extends React.Component {
                 </div>
                 <div className="actions">
                     <button type="button" className="btn btn-info btn-lg" id="start-test-button">
-                        @TestsResources.StartTestButtonText
+                        Start Test
             </button>
                     <a className="btn btn-default btn-lg" href="">
                         Go Back
@@ -35,6 +40,9 @@ class App extends React.Component {
                     <audio src="focus_hyperactivity_4/1.mp3" id="sound-1" type="audio/mpeg"></audio>
                     <audio src="focus_hyperactivity_4/2.mp3" id="sound-2" type="audio/mpeg" ></audio >
                 </div >
+                <div id="test-progress" style={{display:"none"}}>
+                    <h3> Test Progress :</h3>
+                </div>
             </div >
         );
     }

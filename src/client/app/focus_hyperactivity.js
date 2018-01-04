@@ -207,6 +207,14 @@
                     .css('top', e.clientY)
                     .addClass('animated ' + animation)
                     .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
+
+                    var correct = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Complete_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
+                    $("#test-progress").append(correct);
+
+            }
+            else{
+                var incorrect = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Incorrect_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
+                $("#test-progress").append(incorrect);
             }
         });
     };

@@ -30737,12 +30737,23 @@ var Lorem;
                     .css('top', e.clientY)
                     .addClass('animated ' + animation)
                     .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
+
+                    var correct = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Complete_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
+                    $("#test-progress").append(correct);
+
+            }
+            else{
+                var incorrect = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Incorrect_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
+                $("#test-progress").append(incorrect);
             }
         });
     };
 })(jQuery, document, window, undefined);
 
 $(function () {
+    $('#start-test-button').click(function(){
+        $("#test-progress").css("display","block");
+    });
     $('#start-test-button').attr('disabled', 'disabled');
     $.get("http://adhdassist.azurewebsites.net/Portal/GetSettings?settingName=focus%20hyperactivity%204", function (data, status) {
         var settings = setSettings(data);
@@ -31792,13 +31803,20 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var testStyle = {
+                display: 'none'
+            };
             return _react2.default.createElement(
                 'div',
                 { id: 'container', className: 'black container-fluid' },
                 _react2.default.createElement(
                     'div',
                     { className: 'workspace' },
-                    _react2.default.createElement('div', { id: 'countdown' }),
+                    _react2.default.createElement(
+                        'div',
+                        { id: 'countdown' },
+                        _react2.default.createElement('img', { src: 'http://www.adhd-assist.com/wp-content/uploads/2015/05/logo4.jpg', alt: 'ADHD Assist', 'class': 'logo_standard' })
+                    ),
                     _react2.default.createElement(
                         'span',
                         { id: 'workspace-container', className: 'super-large-font' },
@@ -31841,7 +31859,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'button',
                         { type: 'button', className: 'btn btn-info btn-lg', id: 'start-test-button' },
-                        '@TestsResources.StartTestButtonText'
+                        'Start Test'
                     ),
                     _react2.default.createElement(
                         'a',
@@ -31854,6 +31872,15 @@ var App = function (_React$Component) {
                     { id: 'additional-controls' },
                     _react2.default.createElement('audio', { src: 'focus_hyperactivity_4/1.mp3', id: 'sound-1', type: 'audio/mpeg' }),
                     _react2.default.createElement('audio', { src: 'focus_hyperactivity_4/2.mp3', id: 'sound-2', type: 'audio/mpeg' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'test-progress', style: { display: "none" } },
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        ' Test Progress :'
+                    )
                 )
             );
         }
