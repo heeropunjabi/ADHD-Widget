@@ -26,7 +26,8 @@ var cssFiles = [
     "./src/client/app/Content/vendors/jssocials/css/jssocials.css", ,
     "./src/client/app/Content/vendors/jssocials/css/jssocials-theme-flat.css",
     "./src/client/app/Content/vendors/animate/animate.css",
-    "./src/client/app/Content/app/styles.css"
+    "./src/client/app/Content/app/styles.css",
+    "./src/client/app/Content/app/platform-vendors/adhd-assist/styles.css"
 ];
 
 gulp.task('scripts', function () {

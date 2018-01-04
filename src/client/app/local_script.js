@@ -1,4 +1,7 @@
 $(function () {
+    $('#start-test-button').click(function(){
+        $("#test-progress").css("display","block");
+    });
     $('#start-test-button').attr('disabled', 'disabled');
     $.get("http://adhdassist.azurewebsites.net/Portal/GetSettings?settingName=focus%20hyperactivity%204", function (data, status) {
         var settings = setSettings(data);
