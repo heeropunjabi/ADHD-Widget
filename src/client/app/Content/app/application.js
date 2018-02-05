@@ -77,7 +77,7 @@
     application.createCountdownTracker = function (elementSelector, totalMilliseconds) {
         if (typeof (Timer) === 'undefiend')
             return;
-
+        
         var timer = new Timer(),
             lastUntilSeconds = totalMilliseconds / 1000,
             target = $(elementSelector),

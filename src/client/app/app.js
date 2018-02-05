@@ -1038,7 +1038,9 @@ var App = function (_React$Component) {
                         'span',
                         { id: 'workspace-container', className: 'super-large-font' },
                         '\xA0'
-                    )
+                    ),
+                    _react2.default.createElement('div', { 'class': 'results', id: 'workspace-results' }),
+                    _react2.default.createElement('div', { id: 'app-feedback' })
                 ),
                 _react2.default.createElement(
                     'div',

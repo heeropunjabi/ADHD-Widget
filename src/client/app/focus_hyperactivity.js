@@ -89,11 +89,18 @@
         $(resultsContainer).show();
 
         var circle = new ProgressBar.Circle(overallScoreContainer, {
-            color: '#fff',
+            color: '#008744',
             strokeWidth: 3,
-            trailWidth: 1,
-            duration: 1000,
-            text: { value: '0' },
+            trailWidth: 3,
+            trailColor : '#E0E0E0',
+            duration: 3000,
+            text: {
+                value: '0',
+                style: {
+                    color: '#3D5AFE'
+                   
+                }
+            },
             step: function (state, bar) {
                 bar.setText((bar.value() * 100).toFixed(0));
             }
@@ -111,6 +118,7 @@
     };
 
     this.startTest = function (targetSelector, resultsSelector, additionalControlsSelector, callback) {
+        var consequenceSuccess = 0;
         var setupSettings = getSettings(),
             attention = function (source, value) {
                 this.source = source;
@@ -129,12 +137,14 @@
             results = $(resultsSelector),
             globalTestTimeout,
             testInProgress = false;
+        var afterconsequenceSuccessShowEncouragementCounter = setupSettings.encouragements.attempts.everyMustBe.data;
 
         var run = function () {
             if (entries.length - 1 === currentEntryIndex) {
                 clearTimeout(globalTestTimeout);
                 renderCurrentRank(results, attentionRow, callback);
                 target.hide();
+                $("#test-progress").hide();
                 testInProgress = false;
             } else {
                 var entry = entries[currentEntryIndex];
@@ -168,6 +178,7 @@
             console.log(lastEntry);
 
             if (testInProgress && lastEntry.reacted === lastEntry.shouldReact) {
+                consequenceSuccess++;
                 var animations = ['bounce', 'rubberBand', 'headShake', 'swing', 'tada', 'wobble', 'jello',
                     'bounceIn', 'fadeOut', 'slideInDown', 'slideOutUp', 'fadeIn', 'fadeInDown',
                     'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInUp', 'slideInLeft', 'slideInRight',
@@ -195,24 +206,29 @@
                 //'fadeOutRight', 'fadeOutRightBig','rollOut','fadeInRightBig', 'hinge','fadeInUpBig','bounceInUp','rotateOutDownLeft', 'rotateOutDownRight',
                 //'fadeOutUpBig','flash', 'bounceInLeft', 'bounceInRight',  'zoomOut', 'fadeInDownBig', 'rotateOutUpRight', 'bounceInDown', 
                 //'rotateOut', 'rotateOutUpLeft',  'shake',
+                console.log("consequenceSuccess" + consequenceSuccess);
+                console.log("afterconsequenceSuccessShowEncouragementCounter" + afterconsequenceSuccessShowEncouragementCounter);
+                if (consequenceSuccess >= afterconsequenceSuccessShowEncouragementCounter) {
+                    consequenceSuccess = 0;
+                    $("<div id='circle'>").html(encouragement)
+                        .css('color', 'white')
+                        .css("background", randomColor)
+                        .css("height", randomCircleHeight)
+                        .css("width", randomCircleHeight)
+                        .css("line-height", randomCircleHeight)
+                        .css('position', 'absolute')
+                        .css('left', e.clientX)
+                        .css('top', e.clientY)
+                        .addClass('animated ' + animation)
+                        .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
 
-                $("<div id='circle'>").html(encouragement)
-                    .css('color', 'white')
-                    .css("background", randomColor)
-                    .css("height", randomCircleHeight)
-                    .css("width", randomCircleHeight)
-                    .css("line-height", randomCircleHeight)
-                    .css('position', 'absolute')
-                    .css('left', e.clientX)
-                    .css('top', e.clientY)
-                    .addClass('animated ' + animation)
-                    .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
 
-                    var correct = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Complete_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
-                    $("#test-progress").append(correct);
-
+                }
+                var correct = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Complete_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
+                $("#test-progress").append(correct);
             }
-            else{
+            else {
+                consequenceSuccess = 0;
                 var incorrect = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Incorrect_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
                 $("#test-progress").append(incorrect);
             }

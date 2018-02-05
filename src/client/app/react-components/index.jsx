@@ -6,19 +6,19 @@ class App extends React.Component {
     }
     render() {
         var testStyle = {
-            display:'none'
+            display: 'none'
         }
         return (
             <div id="container" className="black container-fluid">
                 <div className="workspace">
-                <div id="countdown">
-                    <img src="http://www.adhd-assist.com/wp-content/uploads/2015/05/logo4.jpg" alt="ADHD Assist" class="logo_standard"></img>
-                </div>
+                    <div id="countdown">
+                        <img src="http://www.adhd-assist.com/wp-content/uploads/2015/05/logo4.jpg" alt="ADHD Assist" class="logo_standard"></img>
+                    </div>
                     <span id="workspace-container" className="super-large-font">
                         &nbsp;
-            </span>
-
-                    
+                    </span>
+                    <div class="results" id="workspace-results"></div>
+                    <div id="app-feedback"></div>
                 </div>
                 <div className="intro-text" id="test-instructions">
                     <p>
@@ -40,7 +40,7 @@ class App extends React.Component {
                     <audio src="focus_hyperactivity_4/1.mp3" id="sound-1" type="audio/mpeg"></audio>
                     <audio src="focus_hyperactivity_4/2.mp3" id="sound-2" type="audio/mpeg" ></audio >
                 </div >
-                <div id="test-progress" style={{display:"none"}}>
+                <div id="test-progress" style={{ display: "none" }}>
                     <h3> Test Progress :</h3>
                 </div>
             </div >

@@ -7,7 +7,6 @@
     "webpack": "webpack",
     "gulp": "gulp",
     "build-and-run": "npm run webpack && npm run gulp && http-server ./src/client/dist/"
-    
   },
   "author": "Heero",
   "license": "MIT",

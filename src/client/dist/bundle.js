@@ -30392,7 +30392,7 @@ var Lorem;
     application.createCountdownTracker = function (elementSelector, totalMilliseconds) {
         if (typeof (Timer) === 'undefiend')
             return;
-
+        
         var timer = new Timer(),
             lastUntilSeconds = totalMilliseconds / 1000,
             target = $(elementSelector),
@@ -30619,11 +30619,18 @@ var Lorem;
         $(resultsContainer).show();
 
         var circle = new ProgressBar.Circle(overallScoreContainer, {
-            color: '#fff',
+            color: '#008744',
             strokeWidth: 3,
-            trailWidth: 1,
-            duration: 1000,
-            text: { value: '0' },
+            trailWidth: 3,
+            trailColor : '#E0E0E0',
+            duration: 5000,
+            text: {
+                value: '0',
+                style: {
+                    color: '#3D5AFE'
+                   
+                }
+            },
             step: function (state, bar) {
                 bar.setText((bar.value() * 100).toFixed(0));
             }
@@ -30641,6 +30648,7 @@ var Lorem;
     };
 
     this.startTest = function (targetSelector, resultsSelector, additionalControlsSelector, callback) {
+        var consequenceSuccess = 0;
         var setupSettings = getSettings(),
             attention = function (source, value) {
                 this.source = source;
@@ -30659,12 +30667,14 @@ var Lorem;
             results = $(resultsSelector),
             globalTestTimeout,
             testInProgress = false;
+        var afterconsequenceSuccessShowEncouragementCounter = setupSettings.encouragements.attempts.everyMustBe.data;
 
         var run = function () {
             if (entries.length - 1 === currentEntryIndex) {
                 clearTimeout(globalTestTimeout);
                 renderCurrentRank(results, attentionRow, callback);
                 target.hide();
+                $("#test-progress").hide();
                 testInProgress = false;
             } else {
                 var entry = entries[currentEntryIndex];
@@ -30698,6 +30708,7 @@ var Lorem;
             console.log(lastEntry);
 
             if (testInProgress && lastEntry.reacted === lastEntry.shouldReact) {
+                consequenceSuccess++;
                 var animations = ['bounce', 'rubberBand', 'headShake', 'swing', 'tada', 'wobble', 'jello',
                     'bounceIn', 'fadeOut', 'slideInDown', 'slideOutUp', 'fadeIn', 'fadeInDown',
                     'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInUp', 'slideInLeft', 'slideInRight',
@@ -30725,24 +30736,29 @@ var Lorem;
                 //'fadeOutRight', 'fadeOutRightBig','rollOut','fadeInRightBig', 'hinge','fadeInUpBig','bounceInUp','rotateOutDownLeft', 'rotateOutDownRight',
                 //'fadeOutUpBig','flash', 'bounceInLeft', 'bounceInRight',  'zoomOut', 'fadeInDownBig', 'rotateOutUpRight', 'bounceInDown', 
                 //'rotateOut', 'rotateOutUpLeft',  'shake',
+                console.log("consequenceSuccess" + consequenceSuccess);
+                console.log("afterconsequenceSuccessShowEncouragementCounter" + afterconsequenceSuccessShowEncouragementCounter);
+                if (consequenceSuccess >= afterconsequenceSuccessShowEncouragementCounter) {
+                    consequenceSuccess = 0;
+                    $("<div id='circle'>").html(encouragement)
+                        .css('color', 'white')
+                        .css("background", randomColor)
+                        .css("height", randomCircleHeight)
+                        .css("width", randomCircleHeight)
+                        .css("line-height", randomCircleHeight)
+                        .css('position', 'absolute')
+                        .css('left', e.clientX)
+                        .css('top', e.clientY)
+                        .addClass('animated ' + animation)
+                        .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
 
-                $("<div id='circle'>").html(encouragement)
-                    .css('color', 'white')
-                    .css("background", randomColor)
-                    .css("height", randomCircleHeight)
-                    .css("width", randomCircleHeight)
-                    .css("line-height", randomCircleHeight)
-                    .css('position', 'absolute')
-                    .css('left', e.clientX)
-                    .css('top', e.clientY)
-                    .addClass('animated ' + animation)
-                    .appendTo($('body')).delay(delay).queue(function () { $(this).remove(); });
 
-                    var correct = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Complete_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
-                    $("#test-progress").append(correct);
-
+                }
+                var correct = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Complete_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
+                $("#test-progress").append(correct);
             }
-            else{
+            else {
+                consequenceSuccess = 0;
                 var incorrect = "<img src='https://cdn0.iconfinder.com/data/icons/shift-symbol/32/Incorrect_Symbol-32.png' alt='ADHD Assist' class='logo_standard'>";
                 $("#test-progress").append(incorrect);
             }
@@ -30764,15 +30780,16 @@ $(function () {
             application.createCountdownTracker('#countdown', settings.totalTime);
             startTest('#workspace-container', '#workspace-results', '#additional-controls', function (results, immediates, newRank) {
                 $.post(
-                    'xyz',
+                    'http://adhdassist.azurewebsites.net/Report/PersistTestResults',
                     {
-                        profileId: '123',
+                        profileId: '6b1387e4-57ea-42b2-bd52-0af69631bfb6',
                         testParameters: JSON.stringify(data),
                         testResults: JSON.stringify(results),
                         immediates: JSON.stringify(immediates),
                         immediateRank: newRank,
                         testIdentifier: 'focus and hyperactivity 4'
                     }).done(function (data) {
+                        debugger;
                         immediates.score = newRank;
                         application.shareResults('#app-feedback', immediates);
                     })
@@ -31821,7 +31838,9 @@ var App = function (_React$Component) {
                         'span',
                         { id: 'workspace-container', className: 'super-large-font' },
                         '\xA0'
-                    )
+                    ),
+                    _react2.default.createElement('div', { 'class': 'results', id: 'workspace-results' }),
+                    _react2.default.createElement('div', { id: 'app-feedback' })
                 ),
                 _react2.default.createElement(
                     'div',

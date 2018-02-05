@@ -12,15 +12,16 @@ $(function () {
             application.createCountdownTracker('#countdown', settings.totalTime);
             startTest('#workspace-container', '#workspace-results', '#additional-controls', function (results, immediates, newRank) {
                 $.post(
-                    'xyz',
+                    'http://adhdassist.azurewebsites.net/Report/PersistTestResults',
                     {
-                        profileId: '123',
+                        profileId: '6b1387e4-57ea-42b2-bd52-0af69631bfb6',
                         testParameters: JSON.stringify(data),
                         testResults: JSON.stringify(results),
                         immediates: JSON.stringify(immediates),
                         immediateRank: newRank,
                         testIdentifier: 'focus and hyperactivity 4'
                     }).done(function (data) {
+                        debugger;
                         immediates.score = newRank;
                         application.shareResults('#app-feedback', immediates);
                     })
