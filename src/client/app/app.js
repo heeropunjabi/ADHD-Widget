@@ -1020,6 +1020,9 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var protocol = document.location.protocol;
+            var oneMp3 = protocol + "//adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3";
+            var twoMp3 = protocol + "//adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3";
             var testStyle = {
                 display: 'none'
             };
@@ -1089,8 +1092,8 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { id: 'additional-controls' },
-                    _react2.default.createElement('audio', { src: 'https://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3', id: 'sound-1', type: 'audio/mpeg' }),
-                    _react2.default.createElement('audio', { src: 'https://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3', id: 'sound-2', type: 'audio/mpeg' })
+                    _react2.default.createElement('audio', { src: oneMp3, id: 'sound-1', type: 'audio/mpeg' }),
+                    _react2.default.createElement('audio', { src: twoMp3, id: 'sound-2', type: 'audio/mpeg' })
                 ),
                 _react2.default.createElement(
                     'div',

@@ -5,6 +5,9 @@ class App extends React.Component {
     componentWillMount() {
     }
     render() {
+        var protocol = document.location.protocol;
+        var oneMp3 = protocol + "//adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3";
+        var twoMp3 = protocol + "//adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3";
         var testStyle = {
             display: 'none'
         }
@@ -37,8 +40,8 @@ class App extends React.Component {
             </a>
                 </div>
                 <div id="additional-controls">
-                    <audio src="https://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3" id="sound-1" type="audio/mpeg"></audio>
-                    <audio src="https://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3" id="sound-2" type="audio/mpeg" ></audio >
+                    <audio src={oneMp3} id="sound-1" type="audio/mpeg"></audio>
+                    <audio src={twoMp3} id="sound-2" type="audio/mpeg" ></audio >
                 </div >
                 <div id="test-progress" style={{ display: "none" }}>
                     <h3> Test Progress :</h3>
