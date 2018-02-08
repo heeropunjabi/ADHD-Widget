@@ -43,14 +43,14 @@ gulp.task('styles', function () {
 });
 
 gulp.task('copy-audio', function () {
-    return gulp.src(['./src/client/app/focus_hyperactivity_4/**/*'])
-      .pipe(gulp.dest('./src/client/dist/focus_hyperactivity_4'));
-  });
+    return gulp.src(['./src/client/app/*.mp3'])
+        .pipe(gulp.dest('./src/client/dist/'));
+});
 
-  gulp.task('copy-html', function () {
+gulp.task('copy-html', function () {
     return gulp.src(['./src/client/app/index.html'])
-      .pipe(gulp.dest('./src/client/dist/'));
-  });
-  
+        .pipe(gulp.dest('./src/client/dist/'));
+});
 
-gulp.task("default", ["styles","scripts","copy-audio","copy-html"]);
+
+gulp.task("default", ["styles", "scripts", "copy-audio", "copy-html"]);
