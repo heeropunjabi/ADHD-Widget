@@ -37,8 +37,8 @@ class App extends React.Component {
             </a>
                 </div>
                 <div id="additional-controls">
-                    <audio src="http://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3" id="sound-1" type="audio/mpeg"></audio>
-                    <audio src="http://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3" id="sound-2" type="audio/mpeg" ></audio >
+                    <audio src="https://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3" id="sound-1" type="audio/mpeg"></audio>
+                    <audio src="https://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3" id="sound-2" type="audio/mpeg" ></audio >
                 </div >
                 <div id="test-progress" style={{ display: "none" }}>
                     <h3> Test Progress :</h3>
