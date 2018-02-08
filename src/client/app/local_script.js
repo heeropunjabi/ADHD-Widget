@@ -21,7 +21,6 @@ $(function () {
                         immediateRank: newRank,
                         testIdentifier: 'focus and hyperactivity 4'
                     }).done(function (data) {
-                        debugger;
                         immediates.score = newRank;
                         application.shareResults('#app-feedback', immediates);
                     })

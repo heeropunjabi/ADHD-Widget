@@ -1089,8 +1089,8 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { id: 'additional-controls' },
-                    _react2.default.createElement('audio', { src: '1.mp3', id: 'sound-1', type: 'audio/mpeg' }),
-                    _react2.default.createElement('audio', { src: '2.mp3', id: 'sound-2', type: 'audio/mpeg' })
+                    _react2.default.createElement('audio', { src: 'http://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/1.mp3', id: 'sound-1', type: 'audio/mpeg' }),
+                    _react2.default.createElement('audio', { src: 'http://adhdassist.azurewebsites.net/Content/resources/audio/focus_hyperactivity_4/2.mp3', id: 'sound-2', type: 'audio/mpeg' })
                 ),
                 _react2.default.createElement(
                     'div',

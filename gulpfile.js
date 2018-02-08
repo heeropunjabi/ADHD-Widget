@@ -42,10 +42,10 @@ gulp.task('styles', function () {
         .pipe(gulp.dest('./src/client/dist/'));
 });
 
-gulp.task('copy-audio', function () {
-    return gulp.src(['./src/client/app/*.mp3'])
-        .pipe(gulp.dest('./src/client/dist/'));
-});
+// gulp.task('copy-audio', function () {
+//     return gulp.src(['./src/client/app/*.mp3'])
+//         .pipe(gulp.dest('./src/client/dist/'));
+// });
 
 gulp.task('copy-html', function () {
     return gulp.src(['./src/client/app/index.html'])
@@ -53,4 +53,4 @@ gulp.task('copy-html', function () {
 });
 
 
-gulp.task("default", ["styles", "scripts", "copy-audio", "copy-html"]);
+gulp.task("default", ["styles", "scripts", "copy-html"]);
